@@ -4,8 +4,8 @@ Projet Miabe Hackathon 2025 app mobile
 # Monorepo Médical - Plateforme Santé Complète
 
 ![Banner](https://via.placeholder.com/1200x400?text=Medical+Platform+-+Mobile+%2B+Web+%2B+API)
-
-## 📦 Structure Monorepo (Turborepo) frontend
+##
+ 📦 Structure Monorepo (Turborepo) frontend
 medical-monorepo/
 ├── apps/
 │ ├── mobile/ # Application Expo (React Native)
