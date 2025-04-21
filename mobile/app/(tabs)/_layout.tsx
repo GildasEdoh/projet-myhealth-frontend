@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
 import { StyleSheet } from 'react-native';
 import Colors from '@/constants/Colors';
-import { Chrome as Home, Calendar, Pill, Droplets, Settings } from 'lucide-react-native';
+import { House as Home, Calendar, Pill, Droplets, Settings } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
@@ -33,14 +33,14 @@ export default function TabLayout() {
         name="medications"
         options={{
           title: 'Rappels',
-          tabBarIcon: ({ color, size }) => <Pill size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Pill size={size} color="#ff0921" />,
         }}
       />
       <Tabs.Screen
         name="bloodDonation"
         options={{
           title: 'Don de sang',
-          tabBarIcon: ({ color, size }) => <Droplets size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Droplets size={size} color="#ff0921" />,
         }}
       />
       <Tabs.Screen
