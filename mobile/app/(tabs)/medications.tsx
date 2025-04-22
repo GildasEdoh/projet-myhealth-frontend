@@ -3,7 +3,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from '@/constants/Colors';
 import { medications } from '@/constants/medical';
-import MedicationCard from '@/components/medical/MedicationCard';
+import MedicationCard from "../../components/medical/MedicationCard";
 import { StatusBar } from 'expo-status-bar';
 import Separator from '@/components/ui/Separator';
 
