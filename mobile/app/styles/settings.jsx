@@ -11,10 +11,12 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       paddingHorizontal: 16,
       paddingVertical: 12,
+      marginVertical: 2
     },
     profileSection: {
       flexDirection: 'row',
       alignItems: 'center',
+      marginTop: 30
     },
     profileImage: {
       width: 60,
@@ -172,5 +174,13 @@ const styles = StyleSheet.create({
       color: Colors.textLight,
       marginTop: 2,
     },
+    backButton: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        zIndex: 10,
+        padding: 8,
+      },
+      
   });
   export default styles;

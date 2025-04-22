@@ -4,8 +4,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from '@/constants/Colors';
 import { StatusBar } from 'expo-status-bar';
 import { User, Bell, Lock, CircleHelp as HelpCircle, FileText, LogOut, ChevronRight } from 'lucide-react-native';
+import { useRouter } from 'expo-router';
 
 export default function SettingsScreen() {
+  const router = useRouter();
   const renderMenuItem = (icon: React.ReactNode, title: string, isDanger = false) => (
     <TouchableOpacity 
       style={styles.menuItem}
@@ -29,6 +31,7 @@ export default function SettingsScreen() {
       </View>
       
       <ScrollView contentContainerStyle={styles.content}>
+      <TouchableOpacity onPress={() => router.push("../screens/profil/profilDetails")}>
         <View style={styles.profileSection}>
           <View style={styles.profileImage}>
             <Text style={styles.profileInitial}>N</Text>
@@ -38,6 +41,7 @@ export default function SettingsScreen() {
             <Text style={styles.profileEmail}>example@email.com</Text>
           </View>
         </View>
+        </TouchableOpacity>
         
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Compte</Text>
@@ -169,94 +173,3 @@ const styles = StyleSheet.create({
     color: Colors.danger,
   },
 });
-
-// import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
-// import React, { useState } from 'react';
-// import { SafeAreaView } from 'react-native-safe-area-context';
-// import Colors from '@/constants/Colors';
-// import { StatusBar } from 'expo-status-bar';
-// import { Bell} from 'lucide-react-native';
-// import renderDocumentsContent from "../../components/settings/documents"
-// import renderPersonalContent from "../../components/settings/personnal"
-// import renderMedicalContent from "../../components/settings/medical"
-// import styles from "../styles/settings"
-
-// function SettingsScreen() {
-//   const [activeTab, setActiveTab] = useState('medical');
-
-//   const renderTabs = () => (
-//     <View style={styles.tabsContainer}>
-//       <TouchableOpacity 
-//         style={[styles.tab, activeTab === 'medical' && styles.activeTab]}
-//         onPress={() => setActiveTab('medical')}
-//       >
-//         <Text style={[styles.tabText, activeTab === 'medical' && styles.activeTabText]}>
-//           Médical
-//         </Text>
-//       </TouchableOpacity>
-//       <TouchableOpacity 
-//         style={[styles.tab, activeTab === 'personal' && styles.activeTab]}
-//         onPress={() => setActiveTab('personal')}
-//       >
-//         <Text style={[styles.tabText, activeTab === 'personal' && styles.activeTabText]}>
-//           Personnel
-//         </Text>
-//       </TouchableOpacity>
-//       <TouchableOpacity 
-//         style={[styles.tab, activeTab === 'documents' && styles.activeTab]}
-//         onPress={() => setActiveTab('documents')}
-//       >
-//         <Text style={[styles.tabText, activeTab === 'documents' && styles.activeTabText]}>
-//           Documents
-//         </Text>
-//       </TouchableOpacity>
-//     </View>
-//   );
-
-//   const renderContent = () => {
-//     switch (activeTab) {
-//       case 'medical':
-//         return renderMedicalContent();
-//       case 'personal':
-//         return renderPersonalContent();
-//       case 'documents':
-//         return renderDocumentsContent();
-//       default:
-//         return renderMedicalContent();
-//     }
-//   };
-
-//   return (
-//     <SafeAreaView style={styles.container}>
-//       <StatusBar style="auto" />
-      
-//       <View style={styles.header}>
-//         <View style={styles.profileSection}>
-//           <Image 
-//             source={{ uri: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg' }}
-//             style={styles.profileImage}
-//           />
-//           <View style={styles.profileInfo}>
-//             <Text style={styles.profileName}>Nom Prénom</Text>
-//             <TouchableOpacity style={styles.editButton}>
-//               <Text style={styles.editButtonText}>Modifier le profil</Text>
-//             </TouchableOpacity>
-//           </View>
-//         </View>
-//         <TouchableOpacity style={styles.notificationButton}>
-//           <Bell size={24} color={Colors.textDark} />
-//         </TouchableOpacity>
-//       </View>
-
-//       {renderTabs()}
-      
-//       <ScrollView 
-//         style={styles.content}
-//         showsVerticalScrollIndicator={false}>
-//         {renderContent()}
-//       </ScrollView>
-//     </SafeAreaView>
-//   );
-// }
-
-// export default SettingsScreen
