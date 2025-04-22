@@ -2,8 +2,10 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import { Bell } from 'lucide-react-native';
 import Colors from '@/constants/Colors';
+import { useRouter } from 'expo-router';
 
 export default function Header() {
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <View style={styles.profileSection}>
@@ -14,7 +16,7 @@ export default function Header() {
         <Text style={styles.profileName}>Nom</Text>
       </View>
       
-      <TouchableOpacity style={styles.notificationButton}>
+      <TouchableOpacity style={styles.notificationButton} onPress={() => router.push("/screens/notifications")}>
         <Bell size={22} color={Colors.textDark} />
         <View style={styles.notificationBadge}>
           <Text style={styles.badgeText}>5</Text>
