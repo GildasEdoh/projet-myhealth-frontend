@@ -7,7 +7,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors.primary,
+        tabBarActiveTintColor: '#4B7BFF',
         tabBarInactiveTintColor: Colors.inactive,
         tabBarStyle: styles.tabBar,
         tabBarShowLabel: true,
@@ -19,14 +19,14 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Accueil',
-          tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
+          tabBarIcon: ({ color, size, focused }) => <Home size={size} color={ focused? '#4B7BFF': '#000000'} />,
         }}
       />
       <Tabs.Screen
         name="appointments"
         options={{
           title: 'Rendez-vous',
-          tabBarIcon: ({ color, size }) => <Calendar size={size} color={color} />,
+          tabBarIcon: ({ color, size, focused }) => <Calendar size={size} color={ focused? '#4B7BFF': '#000000'} />,
         }}
       />
       <Tabs.Screen
@@ -47,7 +47,7 @@ export default function TabLayout() {
         name="settings"
         options={{
           title: 'Paramètre',
-          tabBarIcon: ({ color, size }) => <Settings size={size} color={color} />,
+          tabBarIcon: ({ color, size, focused }) => <Settings size={size} color={ focused? '#4B7BFF': '#000000'} />,
         }}
       />
     </Tabs>
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     elevation: 8,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: -2 },
+    borderRadius: 40,
+    shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
     borderTopWidth: 0.5,

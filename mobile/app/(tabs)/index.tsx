@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, ScrollView, TextInput } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Header from '@/components/ui/Header';
+import Header from '@/components/ui/Homeheader';
 import SearchBar from '@/components/ui/SearchBar';
 import UpcomingAppointment from '@/components/medical/UpcomingAppointment';
 import SpecialistSection from '@/components/medical/SpecialistSection';
@@ -15,8 +15,7 @@ export default function HomeScreen() {
       <StatusBar style="auto" />
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
-      >
+        contentContainerStyle={styles.scrollContent}>
         <Header />
         <SearchBar />
         
@@ -58,3 +57,11 @@ const styles = StyleSheet.create({
     color: Colors.textDark,
   },
 });
+
+
+
+// import { Redirect } from 'expo-router';
+
+// export default function Index() {
+//   return <Redirect href="./screens/eligibility" />;
+// }

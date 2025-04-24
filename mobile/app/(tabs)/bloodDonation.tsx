@@ -3,45 +3,58 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from '@/constants/Colors';
 import { StatusBar } from 'expo-status-bar';
+import { Redirect } from 'expo-router';
+/**
+ * 
+ * @returns the page with contains the steps to register for a donation or the donation informations
+ */
 
 export default function BloodDonationScreen() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>Don de Sang</Text>
-      </View>
-      
-      <View style={styles.content}>
-        <View style={styles.imageContainer}>
-          <Image 
-            source={{ uri: 'https://images.pexels.com/photos/8550854/pexels-photo-8550854.jpeg' }} 
-            style={styles.image}
-            resizeMode="cover"
-          />
+  const isEligible = null
+
+  if (isEligible === null) {
+    // Redirige vers eligibility si pas encore complété
+    return <Redirect href="../screens/eligibility "/>;
+  } else {
+
+    return (
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="auto" />
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerTitle}>Don de Sang</Text>
         </View>
         
-        <View style={styles.infoContainer}>
-          <Text style={styles.infoTitle}>Votre prochain don</Text>
-          <Text style={styles.infoText}>
-            Vous pouvez donner du sang à partir du: <Text style={styles.highlight}>15 Septembre 2025</Text>
-          </Text>
+        <View style={styles.content}>
+          <View style={styles.imageContainer}>
+            <Image 
+              source={{ uri: 'https://images.pexels.com/photos/8550854/pexels-photo-8550854.jpeg' }} 
+              style={styles.image}
+              resizeMode="cover"
+            />
+          </View>
           
-          <View style={styles.statsContainer}>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>A+</Text>
-              <Text style={styles.statLabel}>Groupe sanguin</Text>
-            </View>
-            <View style={styles.statDivider} />
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>3</Text>
-              <Text style={styles.statLabel}>Dons effectués</Text>
+          <View style={styles.infoContainer}>
+            <Text style={styles.infoTitle}>Votre prochain don</Text>
+            <Text style={styles.infoText}>
+              Vous pouvez donner du sang à partir du: <Text style={styles.highlight}>15 Septembre 2025</Text>
+            </Text>
+            
+            <View style={styles.statsContainer}>
+              <View style={styles.statItem}>
+                <Text style={styles.statValue}>A+</Text>
+                <Text style={styles.statLabel}>Groupe sanguin</Text>
+              </View>
+              <View style={styles.statDivider} />
+              <View style={styles.statItem}>
+                <Text style={styles.statValue}>3</Text>
+                <Text style={styles.statLabel}>Dons effectués</Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
-    </SafeAreaView>
-  );
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
