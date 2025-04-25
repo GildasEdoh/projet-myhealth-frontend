@@ -7,29 +7,8 @@ import AppointmentCard from '@/components/medical/AppointmentCard';
 import { StatusBar } from 'expo-status-bar';
 import Separator from '@/components/ui/Separator';
 import { Calendar, Filter } from 'lucide-react-native';
-import { TouchableOpacity } from 'react-native';
-import { Plus } from 'lucide-react-native';
-import AppointmentModal from '@/components/medical/AppointementModal';
 
 export default function AppointmentsScreen() {
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const handleSaveAppointment = (appointment: {
-    hospital: string;
-    specialty: string;
-    doctor: string;
-    date: string;
-    time: string;
-    firstName: string;
-    lastName: string;
-    phone: string;
-    email: string;
-    reason: string;
-  }) => {
-    console.log('Appointment saved:', appointment);
-    // Handle saving the appointment
-  };
-
   const [selectedFilter, setSelectedFilter] = useState('upcoming');
   
   const filteredAppointments = appointments.filter(appointment => {
@@ -90,19 +69,6 @@ export default function AppointmentsScreen() {
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
       />
-      <TouchableOpacity 
-        style={styles.fab} 
-        activeOpacity={0.8}
-        onPress={() => setModalVisible(true)}
-      >
-        <Plus color="white" size={24} />
-      </TouchableOpacity>
-
-      <AppointmentModal
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
-        onSave={handleSaveAppointment}
-      />
     </SafeAreaView>
   );
 }
@@ -151,22 +117,5 @@ const styles = StyleSheet.create({
   listContent: {
     paddingHorizontal: 16,
     paddingBottom: 80,
-  },
-  fab: {
-    position: 'absolute',
-    bottom: 24,
-    right: 24,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: '#3B82F6',
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    zIndex: 10,
   },
 });
