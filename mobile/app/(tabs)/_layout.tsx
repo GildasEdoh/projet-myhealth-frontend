@@ -19,14 +19,14 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Accueil',
-          tabBarIcon: ({ color, size, focused }) => <Home size={size} color={ focused? '#4B7BFF': '#000000'} />,
+          tabBarIcon: ({ color, size, focused }) => <Home size={size} color={ focused ? '#4B7BFF': '#000000'} />,
         }}
       />
       <Tabs.Screen
         name="appointments"
         options={{
           title: 'Rendez-vous',
-          tabBarIcon: ({ color, size, focused }) => <Calendar size={size} color={ focused? '#4B7BFF': '#000000'} />,
+          tabBarIcon: ({ color, size, focused }) => <Calendar size={size} color={ focused ? '#4B7BFF': '#000000'} />,
         }}
       />
       <Tabs.Screen

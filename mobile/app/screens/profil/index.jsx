@@ -73,9 +73,6 @@ function ProfilScreen() {
           />
           <View style={styles.profileInfo}>
             <Text style={styles.profileName}>Nom Prénom</Text>
-            <TouchableOpacity style={styles.editButton}>
-              <Text style={styles.editButtonText}>Modifier le profil</Text>
-            </TouchableOpacity>
           </View>
         </View>
         <TouchableOpacity style={styles.notificationButton}>

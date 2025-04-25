@@ -4,7 +4,7 @@ import Colors from '@/constants/Colors';
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#FFFFFF',
     },
     header: {
       flexDirection: 'row',

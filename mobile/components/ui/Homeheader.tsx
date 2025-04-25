@@ -4,7 +4,11 @@ import { Bell } from 'lucide-react-native';
 import Colors from '@/constants/Colors';
 import { useRouter } from 'expo-router';
 
-export default function Header() {
+interface HeaderProps {
+  title: string;
+}
+export default function Header({ title }: HeaderProps) {
+  
   const router = useRouter();
   return (
     <View style={styles.container}>
@@ -33,6 +37,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 12,
+    backgroundColor: '#FFFFFF'
   },
   profileSection: {
     flexDirection: 'row',
@@ -75,3 +80,75 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+
+
+// import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+// import { Bell } from 'lucide-react-native';
+
+// interface HeaderProps {
+//   title: string;
+// }
+
+// export default function Header({ title }: HeaderProps) {
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.title}>{title}</Text>
+//       <View style={styles.profileContainer}>
+//         <View style={styles.profileInfo}>
+//           <Image 
+//             source={{ uri: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=150' }} 
+//             style={styles.avatar} 
+//           />
+//           <Text style={styles.name}>Nom</Text>
+//         </View>
+//         <TouchableOpacity style={styles.notificationButton}>
+//           <Bell color="#000" size={24} />
+//         </TouchableOpacity>
+//       </View>
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     paddingHorizontal: 16,
+//     paddingTop: 8,
+//     paddingBottom: 16,
+//   },
+//   title: {
+//     fontSize: 24,
+//     fontWeight: '600',
+//     color: '#4B5563',
+//     marginBottom: 16,
+//   },
+//   profileContainer: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     justifyContent: 'space-between',
+//     backgroundColor: 'white',
+//     borderRadius: 12,
+//     padding: 12,
+//     shadowColor: '#000',
+//     shadowOffset: { width: 0, height: 1 },
+//     shadowOpacity: 0.1,
+//     shadowRadius: 2,
+//     elevation: 2,
+//   },
+//   profileInfo: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//   },
+//   avatar: {
+//     width: 40,
+//     height: 40,
+//     borderRadius: 20,
+//     marginRight: 12,
+//   },
+//   name: {
+//     fontSize: 16,
+//     fontWeight: '600',
+//   },
+//   notificationButton: {
+//     padding: 8,
+//   },
+// });

@@ -13,10 +13,11 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
+      <Header title='Acceuil'/>
       <ScrollView 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}>
-        <Header />
+        
         <SearchBar />
         
         <View style={styles.section}>
@@ -58,10 +59,3 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
-// import { Redirect } from 'expo-router';
-
-// export default function Index() {
-//   return <Redirect href="./screens/eligibility" />;
-// }
