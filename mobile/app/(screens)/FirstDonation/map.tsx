@@ -44,7 +44,7 @@ function MapScreen() {
   const handleValidate = () => {
     // Here you would handle the final validation
     // For demo purposes, we'll just go back to the beginning
-    router.replace('./eligibility');
+    router.replace('/bloodDonation');
   };
 
   const handleBack = () => {
@@ -110,7 +110,7 @@ function MapScreen() {
           />
         </View>
 
-        <Button title="Valider" onPress={handleValidate} primary />
+        <Button title="Valider" onPress={handleValidate} />
       </View>
     </SafeAreaView>
   );

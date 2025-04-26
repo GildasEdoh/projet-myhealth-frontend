@@ -9,6 +9,13 @@ export interface Visit {
   doctorName: string;
   specialty: string;
 }
+export type DoctorType = {
+  id: number;
+  name: string;
+  specialty: string;
+  description: string;
+  availability: string;
+};
 
 export interface Appointment {
   id: number;
@@ -112,6 +119,15 @@ export const appointments: Appointment[] = [
     location: 'Cabinet Dentaire Sourire',
     status: 'completed',
   },
+  {
+    id: 5,
+    doctorName: 'Dr. Umar',
+    specialty: 'Gyneco',
+    date: '2025-08-10T09:8:00',
+    time: '09:00',
+    location: 'Cabinet Dentaire Sourire',
+    status: 'completed',
+  },
 ];
 
 export const medications: Medication[] = [
@@ -138,4 +154,42 @@ export const medications: Medication[] = [
     time: ['08:00'],
     reminder: true,
   },
+];
+
+
+export const doctors: DoctorType[] = [
+  {
+    id: 1,
+    name: 'Dr. Junior Idris',
+    specialty: 'Cardiologue',
+    description: 'Bref descriptive de la spécialité et expérience',
+    availability: 'Prochaine disponibilité',
+  },
+  {
+    id: 2,
+    name: 'Dr. Vincent',
+    specialty: 'Spécialité',
+    description: 'Bref descriptive de la spécialité et expérience',
+    availability: 'Prochaine disponibilité',
+  },
+  {
+    id: 3,
+    name: 'Dr. Junior',
+    specialty: 'Spécialité',
+    description: 'Bref descriptive de la spécialité et expérience',
+    availability: 'Prochaine disponibilité',
+  },
+];
+export const hospitals = [
+  { id: 1, name: 'CHU Tokoin' },
+  { id: 2, name: 'Clinique Saint Louis' },
+  { id: 3, name: 'Centre Médical' },
+];
+
+export const specialties = [
+  { id: 1, name: 'Cardiologue' },
+  { id: 2, name: 'Dermatologie' },
+  { id: 3, name: 'Ophtalmologie' },
+  { id: 4, name: 'Pédiatrie' },
+  { id: 5, name: 'Gynécologie' },
 ];

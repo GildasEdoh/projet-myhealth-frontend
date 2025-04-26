@@ -25,6 +25,12 @@ const Colors = {
   card: '#FFFFFF',
   
   inactive: '#A0AEC0',
+  backgroundColor: '#F8F9FA',
+  cardBackground: '#FFFFFF',
+  shadowColor: '#000000',
+  error: '#F44336',
+  textMuted: '#9E9E9E',
+  borderColor: '#E0E0E0',
 };
 
 export default Colors;

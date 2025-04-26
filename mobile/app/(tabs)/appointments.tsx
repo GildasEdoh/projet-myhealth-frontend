@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from '@/constants/Colors';
@@ -7,9 +7,14 @@ import AppointmentCard from '@/components/medical/AppointmentCard';
 import { StatusBar } from 'expo-status-bar';
 import Separator from '@/components/ui/Separator';
 import { Calendar, Filter } from 'lucide-react-native';
+import { Plus } from 'lucide-react-native';
+import { router } from 'expo-router';
 
 export default function AppointmentsScreen() {
   const [selectedFilter, setSelectedFilter] = useState('upcoming');
+  const handleNewAppointment = () => {
+    router.push('/NewApointement')
+  };
   
   const filteredAppointments = appointments.filter(appointment => {
     return selectedFilter === 'upcoming' 
@@ -69,6 +74,12 @@ export default function AppointmentsScreen() {
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
       />
+      <TouchableOpacity 
+        style={styles.fab} 
+        activeOpacity={0.8}
+        onPress={handleNewAppointment}>
+        <Plus color="white" size={24} />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -117,5 +128,22 @@ const styles = StyleSheet.create({
   listContent: {
     paddingHorizontal: 16,
     paddingBottom: 80,
+  },
+  fab: {
+    position: 'absolute',
+    bottom: 24,
+    right: 24,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: '#4B7BFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    zIndex: 10,
   },
 });

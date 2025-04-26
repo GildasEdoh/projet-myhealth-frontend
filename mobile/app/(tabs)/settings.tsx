@@ -31,7 +31,7 @@ export default function SettingsScreen() {
       </View>
       
       <ScrollView contentContainerStyle={styles.content}>
-      <TouchableOpacity onPress={() => router.push("../screens/profil")}>
+      <TouchableOpacity onPress={() => router.push("/(screens)/Profil")}>
         <View style={styles.profileSection}>
           <View style={styles.profileImage}>
             <Text style={styles.profileInitial}>N</Text>

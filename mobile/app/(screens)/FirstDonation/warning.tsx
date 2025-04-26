@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function WarningScreen() {
   const handleNext = () => {
-    router.push('./map');
+    router.push('/FirstDonation/map');
   };
 
   const handleBack = () => {
@@ -32,7 +32,7 @@ export default function WarningScreen() {
             </Text>
           </View>
 
-          <Button title="Suivant" onPress={handleNext} icon="arrow-right" />
+          <Button title="Suivant" onPress={handleNext}  />
         </View>
       </ScrollView>
     </SafeAreaView>

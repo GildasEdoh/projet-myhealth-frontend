@@ -13,7 +13,7 @@ export default function DonationLayout() {
         animation: 'slide_from_right',
       }}
     >
-      <Stack.Screen name="eligibility" />
+      <Stack.Screen name="index" />
       <Stack.Screen name="warning" />
       <Stack.Screen name="map" />
     </Stack>

@@ -3,18 +3,26 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from '@/constants/Colors';
 import { StatusBar } from 'expo-status-bar';
-import { Redirect } from 'expo-router';
+import { router } from 'expo-router';
+import { useEffect } from 'react';
 /**
  * 
  * @returns the page with contains the steps to register for a donation or the donation informations
  */
+
 
 export default function BloodDonationScreen() {
   const isEligible = null
 
   if (isEligible === null) {
     // Redirige vers eligibility si pas encore complété
-    return <Redirect href="../screens/eligibility "/>;
+    useEffect(() => {
+      router.replace('/FirstDonation');
+    }, []);
+  }
+  
+  if (isEligible === null) {
+    return null; // Évite l'affichage du contenu si la redirection est en cours
   } else {
 
     return (

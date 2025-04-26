@@ -15,11 +15,11 @@ export default function EligibilityScreen() {
   ];
 
   const handleNext = () => {
-    router.push('./warning');
+    router.push('/FirstDonation/warning');
   };
 
   const handleBack = () => {
-    router.push('../../')
+    router.push('/(tabs)')
   }
 
   return (
@@ -52,7 +52,7 @@ export default function EligibilityScreen() {
             </View>
           </View>
 
-          <Button title="Suivant" onPress={handleNext} icon="arrow-right" />
+          <Button title="Suivant" onPress={handleNext} />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -18,9 +18,10 @@ export default function Header({ title }: HeaderProps) {
           style={styles.profileImage}
         />
         <Text style={styles.profileName}>Nom</Text>
+        <Text style={styles.profileName}></Text>
       </View>
       
-      <TouchableOpacity style={styles.notificationButton} onPress={() => router.push("/screens/notifications")}>
+      <TouchableOpacity style={styles.notificationButton} onPress={() => router.push("/Notifications")}>
         <Bell size={22} color={Colors.textDark} />
         <View style={styles.notificationBadge}>
           <Text style={styles.badgeText}>5</Text>

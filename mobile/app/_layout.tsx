@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useFrameworkReady } from '@/hooks/useFrameworkReady';
-import kd from "./screens/notifications"
+import kd from "./(screens)/notifications"
 export default function RootLayout() {
   useFrameworkReady();
 
@@ -11,7 +11,7 @@ export default function RootLayout() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" options={{ title: 'Oops!' }} />
-        <Stack.Screen name="./screens/notifications" options={{ title: 'Notifs' }} />
+        <Stack.Screen name="(screens)" options={{ title: 'Ecrans' }} />
       </Stack>
       <StatusBar style="auto" />
     </>
