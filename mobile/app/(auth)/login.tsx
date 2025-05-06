@@ -29,42 +29,43 @@ export default function LoginScreen() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   
-  const validate = () => {
-    const newErrors: Record<string, string> = {};
+  // const validate = () => {
+  //   const newErrors: Record<string, string> = {};
     
-    if (!email) {
-      newErrors.email = 'Email est requis';
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Email invalide';
-    }
+  //   if (!email) {
+  //     newErrors.email = 'Email est requis';
+  //   } else if (!/\S+@\S+\.\S+/.test(email)) {
+  //     newErrors.email = 'Email invalide';
+  //   }
     
-    if (!password) {
-      newErrors.password = 'Mot de passe est requis';
-    } else if (password.length < 6) {
-      newErrors.password = 'Le mot de passe doit contenir au moins 6 caractères';
-    }
+  //   if (!password) {
+  //     newErrors.password = 'Mot de passe est requis';
+  //   } else if (password.length < 6) {
+  //     newErrors.password = 'Le mot de passe doit contenir au moins 6 caractères';
+  //   }
     
-    setErrors(newErrors);
-    setTouched({
-      email: true,
-      password: true,
-    });
+  //   setErrors(newErrors);
+  //   setTouched({
+  //     email: true,
+  //     password: true,
+  //   });
     
-    return Object.keys(newErrors).length === 0;
-  };
+  //   return Object.keys(newErrors).length === 0;
+  // };
   
   const handleLogin = async () => {
     clearAuthError();
     
-    if (!validate()) {
-      return;
-    }
+    // if (!validate()) {
+    //   return;
+    // }
+    
     
     setIsLoading(true);
     
     try {
       await signIn(email, password);
-      // router.replace('/(app)');
+      router.replace('/(tabs)');
     } catch (error) {
       console.error('Login failed:', error);
       // Error is handled by the auth context

@@ -12,7 +12,7 @@ const mockSignIn = async (email: string, password: string): Promise<string> => {
 //     throw new Error('Invalid credentials');
 //   }
   
-  return 'mock-auth-token';
+return 'mock-auth-token-for-testing';
 };
 
 const mockSignUp = async (userData: any): Promise<string> => {
@@ -20,7 +20,7 @@ const mockSignUp = async (userData: any): Promise<string> => {
 //   await new Promise(resolve => setTimeout(resolve, 1000));
   
 //   // Simulate success
-  return 'mock-auth-token';
+return 'mock-auth-token-for-testing';
 };
 
 const mockSignOut = async (): Promise<void> => {
