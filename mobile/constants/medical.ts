@@ -40,7 +40,7 @@ export const specialists: Specialist[] = [
   {
     id: 1,
     name: 'Neurologue',
-    imageUrl: 'https://images.pexels.com/photos/8376158/pexels-photo-8376158.jpeg',
+    imageUrl: 'https://img-3.journaldesfemmes.fr/2k6U4vk-o4b1tLEFx9y0egJCUw0=/1500x/smart/1186a8321de9480eb7d4b32f776ada84/ccmcms-jdf/39631837.jpg',
   },
   {
     id: 2,
@@ -50,7 +50,7 @@ export const specialists: Specialist[] = [
   {
     id: 3,
     name: 'Orthopediste',
-    imageUrl: 'https://images.pexels.com/photos/8376212/pexels-photo-8376212.jpeg',
+    imageUrl: 'https://www.deuxiemeavis.fr/_next/image?url=https%3A%2F%2Fmedia.carians.fr%2Fdeuxiemeavis%2Fblog%2Fqu-est-ce-qu-un-medecin-orthopediste.png&w=3840&q=75',
   },
   {
     id: 4,
@@ -65,7 +65,7 @@ export const specialists: Specialist[] = [
   {
     id: 6,
     name: 'Ophtalmologues',
-    imageUrl: 'https://images.pexels.com/photos/8376147/pexels-photo-8376147.jpeg',
+    imageUrl: 'https://previews.123rf.com/images/topvectors/topvectors1706/topvectors170600497/80273726-oculiste-ou-ophtalmologue-ophtalmologue-m%C3%A9decin-indiquant-le-texte-de-l-examen-illustration-vectorie.jpg',
   },
 ];
 

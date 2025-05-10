@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
   specialistCard: {
     alignItems: 'center',
     marginRight: 24,
-    width: 100,
+    width: 200,
   },
   specialistImage: {
-    width: 70,
-    height: 70,
+    width: 200,
+    height: 130,
     borderRadius: 12,
     marginBottom: 8,
   },
