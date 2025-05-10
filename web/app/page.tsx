@@ -22,7 +22,9 @@ export default function Home() {
                 Simplifiez la gestion des patients, les rendez-vous et optimisez votre pratique
                 médicale grâce à notre solution tout-en-un.
               </p>
-              <Button className="bg-blue-500 hover:bg-blue-600">En savoir +</Button>
+              <Link href="/auth/login">
+                <Button className="bg-blue-500 hover:bg-blue-600">Démarrer ici 🚀</Button>
+              </Link>
               <Button variant="outline" className="ml-4">Découvrir nos services</Button>
             </div>
             <div className="relative h-[300px] md:h-[400px]">

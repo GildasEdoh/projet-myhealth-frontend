@@ -1,219 +1,113 @@
 "use client";
 
+import { Button as ShadButton } from "@/components/ui/button";
+import { Stepper, Step, StepLabel } from "@mui/material";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { AuthFooterLink } from "@/components/auth/auth-card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Loader2 } from "lucide-react";
+import { OAuthButtons } from "@/components/auth/oauth-buttons";
+import { HopitalDetailForm, HopitalContactForm } from "./register-cards";
+import { DoctorCoordonnesForm } from "./register/doctor-coordonnes-form";
+import { DoctorHealthCenterForm } from "./register/doctor-health-center-from";
+import { DoctorPersoInfoForm } from "./register/doctor-perso-info-from";
 
-const registerSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters",
-  }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z.string().min(8, {
-    message: "Password must be at least 8 characters",
-  }),
-  confirmPassword: z.string().min(8, {
-    message: "Password must be at least 8 characters",
-  }),
-  termsAndConditions: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the terms and conditions" }),
-  }),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"],
-});
+interface MultiStepFormProps {
+  className?: string;
+}
 
-type RegisterFormValues = z.infer<typeof registerSchema>;
+const steps = ["Type de compte", "Détails", "Confirmation", "Hello"];
 
-export function RegisterForm() {
-  const [isLoading, setIsLoading] = useState(false);
+let isMedecin = true;
 
-  const form = useForm<RegisterFormValues>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      termsAndConditions: true,
-    },
-  });
+export function MultiStepForm({ className }: MultiStepFormProps) {
+  const [activeStep, setActiveStep] = useState(0);
 
-  async function onSubmit(data: RegisterFormValues) {
-    setIsLoading(true);
-    
-    // Here you would connect to your authentication backend
-    console.log("Register data:", data);
-    
-    // Simulate API call
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      // Mock successful registration
-      console.log("Registration successful");
-      // Navigate to login page or email verification page
-      // router.push("/auth/login");
-    } catch (error) {
-      console.error("Registration failed:", error);
-      form.setError("root", {
-        message: "Registration failed. Please try again.",
-      });
-    } finally {
-      setIsLoading(false);
+  const handleNext = () => {
+    if (activeStep < steps.length) {
+      setActiveStep((prev) => prev + 1);
     }
-  }
+  };
+
+  const handleBack = () => {
+    if (activeStep > 0) {
+      setActiveStep((prev) => prev - 1);
+    }
+  };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input 
-                  placeholder="John Doe" 
-                  {...field} 
-                  disabled={isLoading}
-                  className="transition-all duration-200"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input 
-                  placeholder="name@example.com" 
-                  {...field} 
-                  disabled={isLoading}
-                  className="transition-all duration-200"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Mot de Passe</FormLabel>
-              <FormControl>
-                <Input 
-                  type="password" 
-                  placeholder="••••••••" 
-                  {...field} 
-                  disabled={isLoading}
-                  className="transition-all duration-200"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <FormField
-          control={form.control}
-          name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
-              <FormControl>
-                <Input 
-                  type="password" 
-                  placeholder="••••••••" 
-                  {...field} 
-                  disabled={isLoading}
-                  className="transition-all duration-200"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <FormField
-          control={form.control}
-          name="termsAndConditions"
-          render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-              <FormControl>
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                  disabled={isLoading}
-                />
-              </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormLabel className="text-sm font-normal">
-                  I agree to the{" "}
-                  <a 
-                    href="/terms" 
-                    className="text-primary hover:underline transition-all duration-200"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Terms of Service
-                  </a>{" "}
-                  and{" "}
-                  <a 
-                    href="/privacy" 
-                    className="text-primary hover:underline transition-all duration-200"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Privacy Policy
-                  </a>
-                </FormLabel>
-              </div>
-            </FormItem>
-          )}
-        />
+    <div className={className}>
+      <Stepper activeStep={activeStep} alternativeLabel>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel></StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <div className="mt-6 text-sm">
+        {activeStep === steps.length ? (
+          // Add here what will be displayed when the form is completed
+          <p className="text-green-600 font-medium">Votre compte est en cours de création</p>
+        ) : (
+          <>
+            <p className="mb-4">
+              Étape {activeStep + 1} : <strong>{getStepContent(activeStep)}</strong>
+            </p>
 
-        {form.formState.errors.root && (
-          <div className="text-sm font-medium text-destructive">
-            {form.formState.errors.root.message}
-          </div>
+            <div className="p-4">
+              {renderStepContent(activeStep)}
+            </div>
+
+            <div className="flex justify-between gap-2">
+              <ShadButton
+                variant="outline"
+                onClick={handleBack}
+                disabled={activeStep === 0}
+              >
+                Précédent
+              </ShadButton>
+              <ShadButton
+                onClick={handleNext}
+                disabled={activeStep === steps.length}
+              >
+                {activeStep === steps.length - 1 ? "Terminer" : "Suivant"}
+              </ShadButton>
+            </div>
+          </>
         )}
-
-        <Button 
-          type="submit" 
-          className="w-full mt-6" 
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Creating account...
-            </>
-          ) : (
-            "Create account"
-          )}
-        </Button>
-
-        <div className="text-center text-sm">
-          Already have an account?{" "}
-          <AuthFooterLink href="/auth/login">
-            Sign in
-          </AuthFooterLink>
-        </div>
-      </form>
-    </Form>
+      </div>
+    </div>
   );
+}
+
+export function renderStepContent(step: number) {
+  const handleRoleChange = (role: "medecin" | "hopital") => {
+    console.log("Rôle sélectionné :", role);
+    isMedecin = role === "medecin";
+    console.log("isMedecin:", isMedecin);
+  };
+  switch (step) {
+    case 0:
+      return <OAuthButtons className="m-6" onRoleSelect={handleRoleChange}/>;
+    case 1:
+      return isMedecin ? <DoctorPersoInfoForm /> : <HopitalDetailForm />;
+    case 2:
+      return isMedecin ? <DoctorHealthCenterForm /> :  <HopitalContactForm />;
+    case 3:
+      return isMedecin ? <DoctorCoordonnesForm /> :  <HopitalContactForm />;
+    default:
+      return "Unknown step";
+  }
+}
+
+function getStepContent(step: number) {
+  switch (step) {
+    case 0:
+      return "Type de compte";
+    case 1:
+      return isMedecin ? "Vos informations personnelles" : "Informations de l'hôpital";
+    case 2:
+      return isMedecin ? "Entrez vos détails" : "Contacts de l'hôpital";
+    case 3:
+      return isMedecin ? "Entrez vos détails" : "Conditions d'utilisation";
+    default:
+      return "Unknown step";
+  }
 }

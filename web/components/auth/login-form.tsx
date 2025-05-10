@@ -12,12 +12,14 @@ import { AuthFooterLink } from "@/components/auth/auth-card";
 import Link from "next/link";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Loader2 } from "lucide-react";
+import axios from 'axios';
+import { setTokens } from '@/lib/auth';
+import { useRouter } from 'next/navigation';
+import { Tokens } from '@/types/tokens';
 
 const loginSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z.string().min(8, {
-    message: "Password must be at least 8 characters",
-  }),
+  username: z.string(),
+  password: z.string(),
   rememberMe: z.boolean().optional(),
 });
 
@@ -25,11 +27,12 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
+      username: "",
       password: "",
       rememberMe: false,
     },
@@ -40,14 +43,15 @@ export function LoginForm() {
     
     // Here you would connect to your authentication backend
     console.log("Login data:", data);
+    const username = data.username
+    const password = data.password
     
     // Simulate API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      // Mock successful login
-      console.log("Login successful");
-      // Navigate to dashboard or homepage after successful login
-      // router.push("/dashboard");
+      console.log("Calling login API with this credentials -> ", username, ", ", password)
+      const res = await axios.post<Tokens>('http://127.0.0.1:8000/api/login/', { username, password });
+      setTokens(res.data);
+      router.push('/dashboard');
     } catch (error) {
       console.error("Login failed:", error);
       form.setError("root", {
@@ -63,13 +67,13 @@ export function LoginForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
-          name="email"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Nom d'utilisateur</FormLabel>
               <FormControl>
                 <Input 
-                  placeholder="name@example.com" 
+                  placeholder="kabao" 
                   {...field} 
                   disabled={isLoading}
                   className="transition-all duration-200"
@@ -108,27 +112,6 @@ export function LoginForm() {
           )}
         />
 
-        {/* <FormField
-          control={form.control}
-          name="rememberMe"
-          render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-              <FormControl>
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                  disabled={isLoading}
-                />
-              </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormLabel className="text-sm font-normal">
-                  Remember me for 30 days
-                </FormLabel>
-              </div>
-            </FormItem>
-          )}
-        /> */}
-
         {form.formState.errors.root && (
           <div className="text-sm font-medium text-destructive">
             {form.formState.errors.root.message}
@@ -143,17 +126,17 @@ export function LoginForm() {
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Signing in...
+              Connexion...
             </>
           ) : (
-            "Sign in with email"
+            "Continuer"
           )}
         </Button>
 
         <div className="text-center text-sm">
-          Don't have an account?{" "}
+          Pas de compte?{" "}
           <AuthFooterLink href="/auth/register">
-            Sign up
+            Créer un compte
           </AuthFooterLink>
         </div>
       </form>
